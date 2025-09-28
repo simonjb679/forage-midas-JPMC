@@ -19,13 +19,17 @@ public class TransactionRecord {
     @Column(nullable = false)
     private double amount;
 
+    @Column(nullable = false)
+    private double incentive;
+
     protected TransactionRecord() {
     }
 
-    public TransactionRecord(UserRecord sender, UserRecord recipient, double amount) {
+    public TransactionRecord(UserRecord sender, UserRecord recipient, double amount, double incentive) {
         this.sender = sender;
         this.recipient = recipient;
         this.amount = amount;
+        this.incentive = incentive;
     }
 
     // Getters
@@ -45,9 +49,13 @@ public class TransactionRecord {
         return amount;
     }
 
+    public double getIncentive() {
+        return incentive;
+    }
+
     @Override
     public String toString() {
-        return String.format("TransactionRecord[id=%d, sender=%s, recipient=%s, amount=%.2f]", 
-                           id, sender.getName(), recipient.getName(), amount);
+        return String.format("TransactionRecord[id=%d, sender=%s, recipient=%s, amount=%.2f, incentive=%.2f]", 
+                           id, sender.getName(), recipient.getName(), amount, incentive);
     }
 }
